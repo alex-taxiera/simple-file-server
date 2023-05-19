@@ -29,8 +29,7 @@ func startFileServer() {
 	os.MkdirAll(opt.metaDir, os.ModePerm)
 	http.HandleFunc("/", fileServer)
 
-	log.Printf("Serving on HTTP port 4000\n")
-	log.Fatal(http.ListenAndServe(":4000", nil))
+	log.Fatal(http.ListenAndServe(":80", nil))
 }
 
 func fileServer(w http.ResponseWriter, r *http.Request) {
@@ -243,7 +242,7 @@ func fileServer(w http.ResponseWriter, r *http.Request) {
 		} else {
 			w.WriteHeader(http.StatusOK)
 		}
-		w.Write([]byte(fileLocation))
+		w.Write([]byte(opt.locationBaseURL+fileLocation))
 		return
 
 	} else if r.Method == "DELETE" {

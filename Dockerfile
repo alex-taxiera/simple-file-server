@@ -6,6 +6,8 @@ ENV READ_SHARED_KEY ''
 ENV LOCATION_BASE_URL ''
 ENV DATA_DIR '/data'
 
+EXPOSE 80
+
 RUN apk add --no-cache build-base
 
 WORKDIR /simple-file-server
